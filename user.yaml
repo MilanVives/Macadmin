@@ -1,0 +1,36 @@
+---
+- name: user module Playbook
+  hosts: vives-macs
+  become: true
+  tasks:
+    - name: user admin present
+      ansible.builtin.user:
+        name: docent
+        password: "{{ 'password' | password_hash('sha512', 'mysecretsalt') }}"
+        comment: Docenten
+        groups:
+          - students
+          - admin
+        state: "present"
+        shell: "/bin/zsh"
+        system: false
+        create_home: true
+        home: "/home/admin"
+        generate_ssh_key: true
+
+- name: create user1
+  hosts: mac1
+  become: true
+  tasks:
+    - name: user student present
+      ansible.builtin.user:
+        name: [student]
+        password: "{{ 'password' | password_hash('sha512', 'mysecretsalt') }}"
+        groups: students
+        state: "present"
+        comment: [Voornaam Naam]
+        shell: "/bin/zsh"
+        system: false
+        create_home: true
+        home: "/home/example"
+        generate_ssh_key: true
