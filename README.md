@@ -1,4 +1,5 @@
 https://rhuaridh.co.uk/blog/ansible-create-user.html
+https://www.talkingquickly.co.uk/2021/01/macos-setup-with-ansible/
 
 Scenario
 
